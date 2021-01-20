@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia Perguntas</title>
+    <!--não precisa colocar a pasta public porque automaticamente o ejs procura na public-->
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    <img src="/img/download.jpg">
     <h1>Guia Perguntas</h1>
     
     <p>Nome: <%= nome %> </p>
@@ -24,5 +27,7 @@
        <h3><%= produto.nome %></h3>
        <h4><%= produto.preco %></h4>
     <% })%>
+
+   
 </body>
 </html>
