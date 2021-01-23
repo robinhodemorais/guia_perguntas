@@ -24,7 +24,13 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.get("/",(req,res) => {
-    res.render("index");
+    //raw significa cru, só trazer os dados e não as demais 
+    //informações do banco
+    Pergunta.findAll({raw: true}).then(perguntas => {
+        res.render("index",{
+            perguntas: perguntas
+        });
+    });    
 });
 
 app.get("/perguntar",(req,res)=> {
