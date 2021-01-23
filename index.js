@@ -2,13 +2,14 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
+const Pergunta = require("./database/Pergunta");
 
 connection
     .authenticate()
     .then(()=> {
         console.log("Conexão feita com o banco de dados!");
     })
-    .cath((msgErro) => {
+    .catch((msgErro) => {
         console.log(msgErro);
     });
 
@@ -34,7 +35,13 @@ app.post("/salvarpergunta",(req,res)=>{
     //console.log(req.body);
     var titulo = req.body.titulo;
     var descricao = req.body.descricao;
-    res.send("Formulário recebido! titulo "+titulo+" "+" descricao "+descricao);
+    Pergunta.create({
+        title:titulo,
+        description:descricao
+    }).then(()=> {
+        //redireciona para uma pagina
+        res.redirect("/");
+    });
 });
 
 app.listen(8080,() => {
