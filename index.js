@@ -61,7 +61,10 @@ app.get("/pergunta/:id",(req,res)=> {
         //quando acha a pergunta chama o then
         if (pergunta != undefined) {//se for diferente, achou
             //pagina que vai exibir
-            res.render("pergunta");
+            res.render("pergunta",{
+                //passa para a view a variavel pergunta para recuperar no html
+                pergunta: pergunta
+            });
         } else { //se não achou
             //se não achou vai para pagina principal
             res.redirect("/");
