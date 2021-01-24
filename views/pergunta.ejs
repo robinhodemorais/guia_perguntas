@@ -6,7 +6,7 @@
         <h1><%= pergunta.title %> </h1> 
         <p><%= pergunta.description %> </p>
         <hr>
-        <form action="">
+        <form method="POST" action="/responder">
             <h3>Responta</h3>
             <label for="">Resposta</label>
             <textarea placeholder="Digite sua resposta" name="corpo" class="form-control"></textarea>
