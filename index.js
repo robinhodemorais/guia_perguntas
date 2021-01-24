@@ -62,11 +62,22 @@ app.get("/pergunta/:id",(req,res)=> {
     }).then(pergunta => {
         //quando acha a pergunta chama o then
         if (pergunta != undefined) {//se for diferente, achou
-            //pagina que vai exibir
-            res.render("pergunta",{
-                //passa para a view a variavel pergunta para recuperar no html
-                pergunta: pergunta
+
+            //busca a resposta da pergunta para exibir
+            Resposta.findAll({
+                where:{perguntaId:pergunta.id},
+                order: [
+                    ['id','DESC']
+                ]
+            }).then(respostas => {
+                //pagina que vai exibir
+                res.render("pergunta",{
+                    //passa para a view a variavel pergunta para recuperar no html
+                    pergunta: pergunta,
+                    respostas:respostas
+                });
             });
+
         } else { //se não achou
             //se não achou vai para pagina principal
             res.redirect("/");
