@@ -27,6 +27,7 @@ app.get("/",(req,res) => {
     //raw significa cru, só trazer os dados e não as demais 
     //informações do banco
     Pergunta.findAll({raw: true}).then(perguntas => {
+        //console.log(perguntas);
         res.render("index",{
             perguntas: perguntas
         });
