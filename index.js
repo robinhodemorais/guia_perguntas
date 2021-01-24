@@ -26,7 +26,9 @@ app.use(bodyParser.json());
 app.get("/",(req,res) => {
     //raw significa cru, só trazer os dados e não as demais 
     //informações do banco
-    Pergunta.findAll({raw: true}).then(perguntas => {
+    Pergunta.findAll({raw: true, order:[
+        ['id','DESC'] //ASC = Crescente, DESC = Decrescente
+    ]}).then(perguntas => {
         //console.log(perguntas);
         res.render("index",{
             perguntas: perguntas
